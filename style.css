@@ -15,7 +15,6 @@ body {
     color: #e5e7eb;
 }
 
-/* ANA KART */
 .card {
     width: 100%;
     max-width: 480px;
@@ -29,7 +28,6 @@ body {
     box-shadow: 0 20px 40px rgba(0, 0, 0, .6);
 }
 
-/* BAŞLIK */
 h1 {
     text-align: center;
     margin-bottom: 10px;
@@ -37,7 +35,6 @@ h1 {
     color: #f8fafc;
 }
 
-/* ARAMA */
 .search {
     display: flex;
     gap: 10px;
@@ -76,7 +73,7 @@ h1 {
     transform: translateY(-2px);
 }
 
-/* AUTOCOMPLETE */
+/* AUTO COMPLETE */
 .suggestions {
     background: #0b1220;
     color: #e5e7eb;

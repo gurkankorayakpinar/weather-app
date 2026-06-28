@@ -17,7 +17,7 @@ const rainEl = document.getElementById("rain");
 const emojiEl = document.getElementById("emoji");
 const updateTime = document.getElementById("updateTime");
 
-// 🌤 Hava durumu kodları
+// Hava durumu kodları
 const weatherCodes = {
     0: ["☀️", "Açık"],
     1: ["🌤️", "Az Bulutlu"],
@@ -40,9 +40,9 @@ const weatherCodes = {
     95: ["⛈️", "Fırtına"]
 };
 
-// -------------------------
+// ------------------------
 // KOORDİNAT AL (İL / İLÇE)
-// -------------------------
+// ------------------------
 async function getCoordinates(query) {
 
     const res = await fetch(
@@ -109,9 +109,9 @@ async function getWeather(query) {
     }
 }
 
-// -------------------------
-// AUTOCOMPLETE
-// -------------------------
+// -------------
+// AUTO COMPLETE
+// -------------
 cityInput.addEventListener("input", async () => {
 
     const q = cityInput.value.trim();
@@ -139,23 +139,23 @@ cityInput.addEventListener("input", async () => {
     `).join("");
 });
 
-// şehir seç
+// Şehir
 window.selectCity = function (name) {
     cityInput.value = name;
     suggestionsBox.innerHTML = "";
     getWeather(name);
 };
 
-// dışarı tıkla kapat
+// Arama butonu dışında bir yere tıklandığında liste kapanır.
 document.addEventListener("click", (e) => {
     if (!e.target.closest(".search")) {
         suggestionsBox.innerHTML = "";
     }
 });
 
-// -------------------------
+// -------------
 // BUTON + ENTER
-// -------------------------
+// -------------
 searchBtn.addEventListener("click", () => {
     getWeather(cityInput.value);
 });
@@ -166,9 +166,9 @@ cityInput.addEventListener("keypress", (e) => {
     }
 });
 
-// -------------------------
-// 🌙 DAKİKA BAŞI OTOMATİK GÜNCELLEME
-// -------------------------
+// -----------------------------------
+// HER DAKİKA BAŞI OTOMATİK GÜNCELLEME
+// -----------------------------------
 function autoUpdateWeather() {
 
     function schedule() {
@@ -198,7 +198,7 @@ function autoUpdateWeather() {
 
 autoUpdateWeather();
 
-// -------------------------
-// İLK AÇILIŞ
-// -------------------------
+// ---------------------
+// AÇILIŞ EKRANI - AYDIN
+// ---------------------
 getWeather("Aydın");
