@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hava Durumu</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>🌤 Hava Durumu</h1>
+
+            <!-- ARAMA -->
+            <div class="search">
+
+                <input type="text" id="city" placeholder="İl veya ilçe yazınız..." value="Aydın" autocomplete="off">
+
+                <button id="searchBtn">Sorgula</button>
+
+            </div>
+
+            <!-- AUTOCOMPLETE -->
+            <div id="suggestions" class="suggestions"></div>
+
+            <!-- LOADING -->
+            <div id="loading" class="loading">
+                Güncelleniyor...
+            </div>
+
+            <!-- ERROR -->
+            <div id="error" class="error"></div>
+
+            <!-- HAVA DURUMU KARTI -->
+            <div id="weather" class="weather">
+
+                <div class="emoji" id="emoji">☀️</div>
+
+                <h2 id="cityName">Aydın</h2>
+
+                <div class="temp">
+                    <span id="temp">--</span>°
+                </div>
+
+                <div class="desc" id="desc">...</div>
+
+                <div class="grid">
+
+                    <div class="item">
+                        <span>🌡️</span>
+                        <strong>Hissedilen</strong>
+                        <p id="feel">-</p>
+                    </div>
+
+                    <div class="item">
+                        <span>💧</span>
+                        <strong>Nem</strong>
+                        <p id="humidity">-</p>
+                    </div>
+
+                    <div class="item">
+                        <span>💨</span>
+                        <strong>Rüzgar</strong>
+                        <p id="wind">-</p>
+                    </div>
+
+                    <div class="item">
+                        <span>🌧️</span>
+                        <strong>Yağmur</strong>
+                        <p id="rain">-</p>
+                    </div>
+
+                </div>
+
+                <div class="update">
+                    Son Güncelleme:
+                    <span id="updateTime">-</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
+
+<!-- GKA -->
