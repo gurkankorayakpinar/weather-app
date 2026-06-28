@@ -18,4 +18,4 @@
 
 # Düzeltilecek veya eklenecek özellikler
 
-- 1 haftalık sorgulama sistemi eklenecek.
+- Bir hafta sonrasına kadar sorgulama özelliği eklenecek.
