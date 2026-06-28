@@ -4,9 +4,9 @@
 
 ***
 
-- Anlık hava durumu verileri için Weather API kullanılmıştır.
+- Anlık hava durumu verileri için `Weather API` kullanılmıştır.
 
-- Şehir isimlerini koordinata çevirmek için Geocoding API kullanılmıştır.
+- Şehir isimlerini koordinata çevirmek için `Geocoding API` kullanılmıştır.
 
 - Şehir ismi yazarken "öneriler" sunulmaktadır.
 
