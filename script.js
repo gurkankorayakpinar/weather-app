@@ -16,6 +16,7 @@ const windEl = document.getElementById("wind");
 const rainEl = document.getElementById("rain");
 const emojiEl = document.getElementById("emoji");
 const updateTime = document.getElementById("updateTime");
+const forecastEl = document.getElementById("forecast");
 
 // Hava durumu kodları
 const weatherCodes = {
@@ -56,9 +57,9 @@ async function getCoordinates(query) {
     return data.results;
 }
 
-// ------------------------
-// HAVA DURUMU VERİSİNİ ÇEK
-// ------------------------
+// --------------------------
+// HAVA DURUMU VERİLERİNİ ÇEK
+// --------------------------
 async function getWeather(query) {
 
     try {
@@ -70,12 +71,13 @@ async function getWeather(query) {
         const results = await getCoordinates(query);
         const place = results[0];
 
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=${place.latitude}&longitude=${place.longitude}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code,apparent_temperature&hourly=precipitation_probability&forecast_days=1`;
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${place.latitude}&longitude=${place.longitude}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=precipitation_probability&forecast_days=7&timezone=auto`;
 
         const res = await fetch(url);
         const data = await res.json();
 
         const current = data.current;
+        const daily = data.daily;
 
         const code = weatherCodes[current.weather_code] || ["❓", "Bilinmiyor"];
         const rainChance = data.hourly.precipitation_probability[0] || 0;
@@ -90,7 +92,29 @@ async function getWeather(query) {
         windEl.textContent = current.wind_speed_10m + " km/s";
         rainEl.textContent = "%" + rainChance;
 
+        // Güncelleme zamanı
         updateTime.textContent = new Date().toLocaleTimeString("tr-TR");
+
+        // 7 GÜNLÜK TAHMİN OLUŞTURMA
+        forecastEl.innerHTML = "";
+        daily.time.forEach((date, index) => {
+            const dateObj = new Date(date);
+            const dayName = index === 0 ? "Bugün" : dateObj.toLocaleDateString("tr-TR", { weekday: 'short' });
+            const dayCode = weatherCodes[daily.weather_code[index]] || ["❓", "Bilinmiyor"];
+            const maxT = Math.round(daily.temperature_2m_max[index]);
+            const minT = Math.round(daily.temperature_2m_min[index]);
+
+            forecastEl.innerHTML += `
+                <div class="forecast-item">
+                    <span class="forecast-day">${dayName}</span>
+                    <span class="forecast-emoji">${dayCode[0]}</span>
+                    <div class="forecast-temps">
+                        <span class="max-temp">${maxT}°</span>
+                        <span class="min-temp">${minT}°</span>
+                    </div>
+                </div>
+            `;
+        });
 
         suggestionsBox.innerHTML = "";
 
@@ -143,10 +167,9 @@ cityInput.addEventListener("input", async () => {
 window.selectCity = function (name) {
     cityInput.value = name;
     suggestionsBox.innerHTML = "";
-    getWeather(name);
 };
 
-// Arama butonu dışında bir yere tıklandığında liste kapanır.
+// "Arama butonu" dışında bir yere tıklandığında liste kapanır.
 document.addEventListener("click", (e) => {
     if (!e.target.closest(".search")) {
         suggestionsBox.innerHTML = "";

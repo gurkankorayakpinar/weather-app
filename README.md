@@ -11,11 +11,3 @@
 - Şehir ismi yazarken "öneriler" sunulmaktadır.
 
 - Sorgulama süresinden bağımsız olarak, her dakika başında veri güncellemesi yapılmaktadır.
-
-***
-***
-***
-
-# Düzeltilecek veya eklenecek özellikler
-
-- Bir hafta sonrasına kadar sorgulama özelliği eklenecek.
