@@ -176,6 +176,11 @@ document.addEventListener("click", (e) => {
     }
 });
 
+// "Sağ tık ile menü açma" özelliği devre dışı
+document.addEventListener('contextmenu', (event) => {
+    event.preventDefault();
+});
+
 // -------------
 // BUTON + ENTER
 // -------------
